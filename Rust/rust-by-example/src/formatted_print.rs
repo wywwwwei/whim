@@ -38,6 +38,7 @@ impl fmt::Display for List {
 // fmt::Debug: Uses the {:?} marker. Format text for debugging purposes.
 // fmt::Display: Uses the {} marker. Format text in a more elegant, user friendly fashion.
 pub fn print_test() {
+    println!("=======> Formmatted Print Test");
     println!("Now {:?} will print!", DebugPrintable(3));
     println!(
         "Now {:?} will print!",
@@ -47,4 +48,5 @@ pub fn print_test() {
 
     let v = List(vec![1, 2, 3]);
     println!("{}", v);
+    println!();
 }
