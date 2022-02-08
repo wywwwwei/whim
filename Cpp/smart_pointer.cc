@@ -46,21 +46,21 @@ public:
     {
         this->ptr_ = p.ptr_;
         this->ref_count_ = p.ref_count_;
-        p->ref_count_->add();
+        ref_count_->add();
     }
     SharedPtr(SharedPtr &&p)
     {
         this->ptr_ = p.ptr_;
         this->ref_count_ = p.ref_count_;
-        p->ptr_ = nullptr;
-        this->ref_count_ = nullptr;
+        p.ptr_ = nullptr;
+        p.ref_count_ = nullptr;
     }
     SharedPtr &operator=(const SharedPtr &p)
     {
         clean();
         this->ptr_ = p.ptr_;
         this->ref_count_ = p.ref_count_;
-        p->ref_count_->add();
+        ref_count_->add();
         return *this;
     }
     SharedPtr &operator=(SharedPtr &&p)
@@ -68,8 +68,8 @@ public:
         clean();
         this->ptr_ = p.ptr_;
         this->ref_count_ = p.ref_count_;
-        p->ptr_ = nullptr;
-        this->ref_count_ = nullptr;
+        p.ptr_ = nullptr;
+        p.ref_count_ = nullptr;
         return *this;
     }
 
