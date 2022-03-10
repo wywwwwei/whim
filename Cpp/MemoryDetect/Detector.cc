@@ -53,9 +53,9 @@ static const size_t ALIGNED_LIST_ITEM_SIZE = ALIGN(sizeof(new_ptr_list_t));
 static new_ptr_list_t new_ptr_list = {&new_ptr_list, &new_ptr_list, 0, {.filename = ""}, 0, 0, DEBUG_NEW_MAGIC};
 
 static std::size_t total_mem_alloc = 0;
-// 用于访问双向链表的锁
+// the lock used to visit linklist
 static std::mutex new_ptr_lock;
-// 用于输出的锁
+// the lock used for output
 static std::mutex output_lock;
 
 static void print_position(const void *ptr, int line)
