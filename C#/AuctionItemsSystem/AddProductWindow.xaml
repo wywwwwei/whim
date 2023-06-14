@@ -1,0 +1,131 @@
+﻿<Window x:Class="WpfDataBindingDemo.AddProductWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDataBindingDemo"
+        mc:Ignorable="d"
+        Title="AddProductWindow" Height="450" Width="800"
+        Loaded="Window_Loaded">
+
+    <Border Padding="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0" Grid.ColumnSpan="2">
+                    Item for sale:
+                </TextBlock>
+
+                <!-- Item description -->
+                <TextBlock Grid.Row="1" Grid.Column="0">
+                    Item description:
+                </TextBlock>
+                <TextBox Name="DescriptionEntryForm" Grid.Row="1" Grid.Column="1"
+                         AutomationProperties.Name="Item Description" AutomationProperties.IsRequiredForForm="True"
+                         Validation.Error="DescriptionEntryForm_Error">
+                    <TextBox.Text>
+                        <Binding Path="Description" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Start Price -->
+                <TextBlock Grid.Row="2" Grid.Column="0">
+                    Start Price:
+                </TextBlock>
+                <TextBox Name="StartPriceEntryForm" Grid.Row="2" Grid.Column="1"
+                         AutomationProperties.Name="Start Price" AutomationProperties.IsRequiredForForm="True"
+                         Validation.Error="StartPriceEntryForm_Error">
+                    <TextBox.Text>
+                        <Binding Path="StartPrice" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <ExceptionValidationRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Start Date -->
+                <TextBlock Grid.Row="3" Grid.Column="0">
+                    Start Date:
+                </TextBlock>
+                <TextBox Name="StartDateEntryForm" Grid.Row="3" Grid.Column="1"
+                         AutomationProperties.Name="Start Date" AutomationProperties.IsRequiredForForm="True"
+                         Validation.Error="StartDateEntryForm_Error">
+                    <TextBox.Text>
+                        <Binding Path="StartDate" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.Converter>
+                                <local:DateConverter />
+                            </Binding.Converter>
+                            <Binding.ValidationRules>
+                                <local:FutureDateRule />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+
+                <!-- Category -->
+                <TextBlock Grid.Row="4" Grid.Column="0">
+                    Category:
+                </TextBlock>
+                <ComboBox Name="CategoryEntryForm" Grid.Row="4" Grid.Column="1" SelectionChanged="CategoryEntryForm_SelectionChanged"
+                          AutomationProperties.Name="Category" 
+                          SelectedValue="{Binding Path=Category}">
+                    <local:ProductCategory>Books</local:ProductCategory>
+                    <local:ProductCategory>Computers</local:ProductCategory>
+                    <local:ProductCategory>DvDs</local:ProductCategory>
+                    <local:ProductCategory>Electronics</local:ProductCategory>
+                    <local:ProductCategory>Home</local:ProductCategory>
+                    <local:ProductCategory>Sports</local:ProductCategory>
+                </ComboBox>
+
+                <!-- Special Features -->
+                <TextBlock Grid.Row="5" Grid.Column="0">
+                    Special Features:
+                </TextBlock>
+                <ComboBox Name="SpecialFeaturesEntryForm" Grid.Row="5" Grid.Column="1" SelectionChanged="SpecialFeaturesEntryForm_SelectionChanged"
+                          AutomationProperties.Name="Special Features"
+                          SelectedValue="{Binding Path=SpecialFeatures}">
+                    <local:SpecialFeatures>None</local:SpecialFeatures>
+                    <local:SpecialFeatures>Color</local:SpecialFeatures>
+                    <local:SpecialFeatures>Highlight</local:SpecialFeatures>
+                </ComboBox>
+
+                <!-- Submit Button -->
+                <Button Name="Submit" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Content="Submit" Click="Submit_Click" />
+
+                <!-- Error Hint (visible only when submit encouters error ) -->
+                <TextBlock Name="ErrorTextBlock" Grid.Row="7" Grid.ColumnSpan="2" />
+            </Grid>
+
+            <ContentControl Name="ShortPreview" Content="{Binding}"  Grid.Row="1" HorizontalAlignment="Left" IsTabStop="False" />
+
+            <ContentControl Name="LongPreview" Content="{Binding}" ContentTemplate="{StaticResource DetailAuctionItemTemplate}" Grid.Row="2" HorizontalAlignment="Left" IsTabStop="False" />
+
+        </Grid>
+    </Border>
+</Window>

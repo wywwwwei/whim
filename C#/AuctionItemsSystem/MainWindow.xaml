@@ -1,0 +1,62 @@
+﻿<Window x:Class="WpfDataBindingDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfDataBindingDemo"
+        mc:Ignorable="d"
+        Title="List of Products" Width="500" Height="400">
+
+    <Window.Resources>
+        <DataTemplate x:Key="GroupingHeaderTemplate">
+            <TextBlock Text="{Binding}"/>
+        </DataTemplate>
+
+        <CollectionViewSource x:Key="ListingDataView"
+                              Source="{Binding Source={x:Static Application.Current}, Path=AuctionItems}" />
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="3">
+            List of Items for sale:
+        </TextBlock>
+        <CheckBox Name="Grouping" Grid.Row="1" Grid.Column="0" Checked="Grouping_Checked" Unchecked="Grouping_Unchecked">
+            Group by category
+        </CheckBox>
+        <CheckBox Grid.Row="1" Grid.Column="1">
+            Show only bargains
+        </CheckBox>
+        <CheckBox Name="Sorting" Grid.Row="1" Grid.Column="2" Checked="Sorting_Checked" Unchecked="Sorting_Unchecked">
+            Sort by category date
+        </CheckBox>
+
+        <ListBox Name="Master" Grid.Row="2" Grid.ColumnSpan="3"
+                 AutomationProperties.Name="Items For Sale"
+                 ItemsSource="{Binding Source={StaticResource ListingDataView}}">
+            <ListBox.GroupStyle>
+                <GroupStyle
+                    HeaderTemplate="{StaticResource GroupingHeaderTemplate}" />
+            </ListBox.GroupStyle>
+        </ListBox>
+
+        <ContentControl Name="Detail" Grid.Row="3" Grid.ColumnSpan="3" IsTabStop="False"
+                        Content="{Binding Source={StaticResource ListingDataView}}"
+                        ContentTemplate="{StaticResource DetailAuctionItemTemplate}" />
+        
+        <Button Name="OpenAddProduct" Grid.Row="4" Grid.Column="1" Content="Add Product" Click="OpenAddProduct_Click" HorizontalAlignment="Center" Margin="20"/>
+    </Grid>
+</Window>
