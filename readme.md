@@ -2,7 +2,7 @@ Some practice mini programs
 
 ##### C
 
-[Queue Example from libuv](./tree/master/C/queue.h)
+[Queue Example from libuv](./C/queue.h)
 
 ##### C++
 
