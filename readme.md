@@ -6,34 +6,34 @@ Some practice mini programs
 
 ##### C++
 
-[OOP in C](./tree/master/Cpp/OOP)
+[OOP in C](./Cpp/OOP)
 
-[Pointer to implementation](./blob/master/Cpp/pImpl.h)
+[Pointer to implementation](./Cpp/pImpl.h)
 
-[Multidimensional Array](./blob/master/Cpp/matrix.cc)
+[Multidimensional Array](./Cpp/matrix.cc)
 
-[CRC32](./blob/master/Cpp/crc32.cc)
+[CRC32](./Cpp/crc32.cc)
 
-[memory leak detection](./tree/master/Cpp/MemoryDetect)
+[memory leak detection](./Cpp/MemoryDetect)
 
-[simple thread pool](./tree/master/Cpp/ThreadPool)
+[simple thread pool](./Cpp/ThreadPool)
 
-[smart pointer implementation](./blob/master/Cpp/smart_pointer.cc)
+[smart pointer implementation](./Cpp/smart_pointer.cc)
 
 ##### JS
 
-[Space Game](./tree/master/JS)
+[Space Game](./JS/SpaceGame)
 
 ##### Rust
 
-[rust-by-example](./tree/master/Rust/rust-by-example)
+[rust-by-example](./Rust/rust-by-example)
 
-[simple web server](./tree/master/Rust/webserver)
+[simple web server](./Rust/webserver)
 
 ##### C# WPF
 
-[Transition demo](./tree/master/C%23/Transition)
+[Transition demo](./C%23/Transition)
 
-[Simple auctions system](./tree/master/C%23/AuctionItemsSystem)
+[Simple auctions system](./C%23/AuctionItemsSystem)
 
 
