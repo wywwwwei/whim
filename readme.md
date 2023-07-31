@@ -20,6 +20,8 @@ Some practice mini programs
 
 [simple memory pool](./Cpp/MemoryPool)
 
+[c++14 string_view](./Cpp/StringView)
+
 [smart pointer implementation](./Cpp/smart_pointer.cc)
 
 ##### JS
